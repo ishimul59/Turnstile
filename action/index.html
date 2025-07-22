@@ -1,0 +1,117 @@
+<!-- The HTML too?!?! --> 
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CloudFreed Turnstile Solver Settings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <style>
+      :root{--bg:#0c0c0c;--panel:#161616;--accent:#f5a623;--text:#e6e6e6;--muted:#9e9e9e}
+
+      *{margin:0;padding:0;box-sizing:border-box;font-family:"Inter",sans-serif}
+      html,body{background:var(--bg);color:var(--text);min-width:280px}
+      body{padding:24px 20px 32px;display:flex;flex-direction:column;gap:18px;position:relative}
+
+      h2{font-size:1.35rem;font-weight:800;text-align:center;color:var(--accent);margin-bottom:8px;margin-top:60px}
+
+      .card{background:var(--panel);border-radius:10px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:18px;box-shadow:0 4px 18px rgba(0,0,0,.45)}
+      .card:hover{box-shadow:0 4px 24px rgba(245,166,35,.15)}
+      .card svg{width:20px;height:20px;flex-shrink:0;fill:var(--accent)}
+      .card-label{flex:1;font-weight:600}
+
+      .toggle{width:46px;height:24px;position:relative;background:#444;border-radius:12px;cursor:pointer;transition:background .25s}
+      .toggle::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;background:#fff;border-radius:50%;transition:left .25s}
+      .toggle.on{background:var(--accent)}
+      .toggle.on::after{left:24px}
+
+      input[type=number],input[type=text]{background:#222;color:var(--text);border:1px solid #333;border-radius:6px;padding:6px 8px;font-weight:600;text-align:center;transition:border .2s}
+      input:focus{outline:none;border-color:var(--accent)}
+      input[type=number]{width:80px}
+      input[type=text]{flex:1}
+
+      .flex-center{display:flex;align-items:center;gap:10px}
+
+      button.buy,button.activate{padding:8px 16px;background:var(--accent);border:none;border-radius:8px;font-weight:700;color:#000;cursor:pointer;transition:opacity .2s}
+      button.buy:hover,button.activate:hover{opacity:.9}
+
+      #activationSection{display:none;flex-direction:column;gap:12px}
+      #statusText{font-size:.9rem;color:var(--accent);text-align:center}
+
+      .header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+        margin-bottom: 8px;
+      }
+      .header-row h2 {
+        margin: 0;
+        font-size: 1.35rem;
+        font-weight: 800;
+        color: var(--accent);
+      }
+
+      .discord-btn{
+        position:absolute;
+        right:20px;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        width:36px; height:36px;
+        border:2px solid var(--accent);
+        border-radius:14px;
+        color:var(--accent);
+        cursor:pointer;
+      }
+      .discord-btn:hover{box-shadow:0 0 18px rgba(245,166,35,.85)}
+      .discord-btn:hover svg{filter:drop-shadow(0 0 6px rgba(245,166,35,.95))}
+    </style>
+  </head>
+
+  <body>
+    <div class="header-row">
+      <h2>CloudFreed Solver</h2>
+      <a href="https://discord.gg/5ncqYYQTPN"
+        target="_blank" rel="noopener"
+        class="discord-btn" aria-label="Join our Discord">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 204 192" role="img" aria-hidden="true">
+          <path d="M0 0 C0 0.66 0 1.32 0 2 C0.7425 2.20625 1.485 2.4125 2.25 2.625 C5.82371889 4.41185945 7.06522496 6.56039993 9 10 C9 10.66 9 11.32 9 12 C7.65035156 12.185625 7.65035156 12.185625 6.2734375 12.375 C-2.38362021 13.76290504 -10.43528262 15.95863742 -18.6875 18.9375 C-19.63125488 19.27330078 -20.57500977 19.60910156 -21.54736328 19.95507812 C-26.25540315 21.706513 -30.45976999 23.29083785 -34 27 C-34.58369443 30.58461856 -34.58369443 30.58461856 -34 34 C-33.34 34.66 -32.68 35.32 -32 36 C-27.5630802 35.90756417 -24.70921836 34.92822083 -20.875 32.75 C-15.59168152 29.94527537 -10.1600081 28.60775714 -4.375 27.25 C-3.48022949 27.03956055 -2.58545898 26.82912109 -1.66357422 26.61230469 C21.08316264 21.47146643 50.52178191 21.66515829 71.0625 34.3125 C74.37512923 36.21549977 76.24064232 36.52456154 80 36 C82.30986777 34.06596127 82.30986777 34.06596127 82.625 30.6875 C82.37684642 27.1338659 82.37684642 27.1338659 80.66796875 25.60546875 C78.51591029 24.17831419 76.34580603 23.08157774 74 22 C73.12472656 21.59007813 72.24945313 21.18015625 71.34765625 20.7578125 C60.98865428 16.37463427 49.96857223 14.29650327 39 12 C40.98565677 6.7313907 43.24867506 3.16754996 48 0 C63.51059961 -3.60711619 77.37624845 2.62236571 90.453125 10.47265625 C105.65480102 20.88754497 110.97482127 43.70469421 115.4375 60.5 C115.76733887 61.73903076 116.09717773 62.97806152 116.43701172 64.25463867 C119.41941205 75.91375047 121.35790925 87.3260245 121.375 99.375 C121.39949219 100.30699219 121.42398438 101.23898438 121.44921875 102.19921875 C121.48125233 109.74846599 119.91883168 113.85282434 114.703125 119.4765625 C113.89359375 120.18554688 113.0840625 120.89453125 112.25 121.625 C111.45078125 122.33914062 110.6515625 123.05328125 109.828125 123.7890625 C103.51891879 128.72139774 97.39113883 131.88124696 89.75 134.25 C88.96109375 134.50523437 88.1721875 134.76046875 87.359375 135.0234375 C79.2545426 137.6246506 70.67970022 140.33985011 62.625 136.3125 C59.95355482 133.95908401 57.37540339 131.65486261 55 129 C55 128.34 55 127.68 55 127 C55.83023682 126.72905518 55.83023682 126.72905518 56.67724609 126.45263672 C71.52683062 121.69337334 71.52683062 121.69337334 85 114 C85.73476562 113.52175781 86.46953125 113.04351562 87.2265625 112.55078125 C89.40833029 110.99747627 89.40833029 110.99747627 89.375 107.4375 C89.35639408 103.93889246 89.35639408 103.93889246 87 102 C82.31236915 101.47843668 80.16419107 102.2076936 76.5 105.0625 C56.02231581 118.84501795 26.76616172 120.57293165 2.98828125 116.8828125 C-8.88974079 114.46122865 -21.05998898 110.74230967 -30.74609375 103.28515625 C-33.67680314 101.61409318 -35.6794277 101.63003252 -39 102 C-41.27793885 103.92703578 -41.27793885 103.92703578 -41.75 107.1875 C-40.87356794 111.64269633 -40.17166924 112.10810419 -36.625 114.6875 C-31.61827995 117.83598362 -26.5690621 120.06091153 -21 122 C-19.76507813 122.44601563 -18.53015625 122.89203125 -17.2578125 123.3515625 C-13.84420633 124.58392057 -10.42380776 125.7962405 -7 127 C-9.09790672 131.50235688 -11.7750754 134.92832798 -16.34375 137.12890625 C-24.29514205 139.73649511 -32.41463728 137.91186738 -40 135 C-40.60005859 134.77425293 -41.20011719 134.54850586 -41.81835938 134.31591797 C-51.50889434 130.60663373 -59.45813602 126.30980662 -67 119 C-67.66128906 118.44441406 -68.32257813 117.88882813 -69.00390625 117.31640625 C-73.37080368 112.9292448 -73.53509141 108.20713527 -73.5625 102.3125 C-73.20387747 86.16972583 -70.39430637 70.51041858 -65.64404297 55.11132812 C-65.01684859 53.05523375 -64.42807805 50.99159616 -63.84765625 48.921875 C-59.30517166 33.07438091 -53.51532663 16.17338123 -38.49438477 7.69384766 C-26.69402977 1.36970098 -13.51294307 -3.91409386 0 0 Z" fill="#f5a623" transform="translate(78,25)"/>
+          <path d="M0 0 C4.11644345 2.50700691 7.22868166 5.46775353 9 10 C9.94897143 17.10625115 9.21578082 23.12009517 5 29 C1.54895703 32.84544789 -1.77466346 33.81422071 -6.7890625 34.1640625 C-11.52490472 33.81263958 -14.18130954 30.88691466 -17.25 27.5625 C-20.57414956 22.69499529 -21.60281778 18.92770814 -21 13 C-17.65733309 3.02897655 -10.56407251 -2.83089525 0 0 Z" fill="#000000" transform="translate(135,88)"/>
+          <path d="M0 0 C4.10491744 2.49998732 7.25709293 5.46680507 9 10 C9.65510603 15.40081598 9.94286371 21.0675618 7.375 26 C4.33814659 29.83602535 1.803963 32.51169765 -3.17578125 33.37890625 C-7.17449623 33.58724266 -9.6519547 33.16417231 -13.3125 31.4375 C-17.49718377 27.64208914 -19.65073928 24.65509421 -20.3828125 19.08984375 C-20.61217288 12.92004965 -20.36141497 8.71504321 -16 4 C-10.51872364 -0.82874346 -7.09559189 -1.90143312 0 0 Z" fill="#000000" transform="translate(80,88)"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="card" role="group" aria-label="Auto solve setting">
+      <div class="flex-center">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 2L3 13h7v9l8-12h-7z"/></svg>
+        <span class="card-label">Auto-Solve</span>
+      </div>
+      <div id="autoSolveToggle" class="toggle" aria-pressed="false" tabindex="0"></div>
+    </div>
+
+    <div class="card" role="group" aria-label="Click delay setting">
+      <div class="flex-center">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a11 11 0 1 0 11 11A11 11 0 0 0 12 1zm0 2a9 9 0 1 1-9 9a9 9 0 0 1 9-9zm-.5 4v5.2l4.5 2.7l.5-.9l-4-2.4V7z"/></svg>
+        <span class="card-label">Click Delay (ms)</span>
+      </div>
+      <input type="number" id="clickDelay" value="0" min="0" step="100" aria-label="Click delay in milliseconds" />
+    </div>
+
+    <div id="activationSection" class="card" style="flex-direction:column;gap:10px">
+      <button id="buyBtn" class="buy">Buy&nbsp;License&nbsp;(€5)</button>
+      <input type="text" id="activationKey" placeholder="Enter activation key" style="width:100%;margin-bottom:8px">
+      <button id="activateBtn" class="activate" style="width:100%">Activate</button>
+    </div>
+
+    <div id="statusText"></div>
+
+    <span id="versionTag"
+          style="position:absolute;bottom:8px;left:20px;font-size:.75rem;color:var(--muted)">
+    </span>
+
+    <script src="./index.js"></script>
+  </body>
+</html>

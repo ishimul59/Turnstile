@@ -1,0 +1,46 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 3,
+  "name": "CloudFreed CloudFlare Turnstile Solver",
+  "version": "2.5.3",
+  "author": "Akmal Abar",
+  "description": "Solve CloudFlare Turnstile Challenges Automatically.",
+  "permissions": [ "storage" ],
+  "host_permissions": ["https://cloudfreed.com/*"],
+  "action": {
+    "default_popup": "action/index.html",
+    "default_icon": {
+      "128": "CloudFreed.png",
+      "16": "CloudFreed.png",
+      "48": "CloudFreed.png"
+    }
+  },
+  "icons": {
+    "128": "CloudFreed.png",
+    "16": "CloudFreed.png",
+    "48": "CloudFreed.png"
+  },
+  "background": {
+    "service_worker": "script/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://challenges.cloudflare.com/*"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "js": ["script/script.js"]
+    },
+    {
+      "matches": ["*://challenges.cloudflare.com/*"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "js": ["script/main.js"],
+      "world": "MAIN"
+    }
+  ],
+  "web_accessible_resources": [{
+    "resources": ["action/index.js"],
+    "matches": ["<all_urls>"]
+  }]
+}
